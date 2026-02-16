@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 
+        ========================================================================
+        GOVERNMENT OF INDIA - MINISTRY OF CONSUMER AFFAIRS
+        PROJECT: SMART RATION DISTRIBUTION SYSTEM (SRDS)
+        PORTAL: UNIFIED CITIZEN SERVICE DASHBOARD v5.5.0-STABLE
+        
+        ARCHITECTURE OVERVIEW:
+        - Layout: Hybrid Grid-Flex Architecture (W3C Standard)
+        - Visuals: High-Density Glassmorphism & Saffron-Navy Government Branding
+        - Optimization: High-Performance Vector Graphics (FontAwesome 6.5.0)
+        - UX Strategy: Task-Oriented "Action Hub" Placement
+        ========================================================================
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Citizen Dashboard | Official Smart Ration Distribution Portal</title>
+    
+    <!-- HIGH-DENSITY TYPOGRAPHY ENGINE -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- PROFESSIONAL ICONOGRAPHY -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* 
+           ---------------------------------------------------------------------
+           1. CORE DESIGN SYSTEM & VARIABLES
+           Standardized for Enterprise Scaling.
+           ---------------------------------------------------------------------
+        */
+        :root {
+            /* Branding Colors */
+            --gov-navy-primary: #002e6d;
+            --gov-navy-hover: #001f4d;
+            --gov-blue-bright: #0056b3;
+            --gov-saffron-primary: #ff9933;
+            --gov-green-success: #128807;
+            --gov-red-danger: #d32f2f;
+            --gov-white-pure: #ffffff;
+            --gov-surface-light: #f8f9fa;
+            
+            /* Layout Constants */
+            --sidebar-width: 320px;
+            --header-height: 85px;
+            --radius-extreme: 24px;
+            --radius-standard: 16px;
+            --radius-ui: 10px;
+            
+            /* Shadows & Depth (Elevation System) */
+            --elevation-1: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --elevation-2: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --elevation-3: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --elevation-extreme: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            
+            /* Typography Scale */
+            --font-size-xs: 11px;
+            --font-size-sm: 13px;
+            --font-size-md: 15px;
+            --font-size-lg: 18px;
+            --font-size-xl: 24px;
+            --font-size-hero: 84px;
+        }
+
+        /* 
+           ---------------------------------------------------------------------
+           2. GLOBAL RESET & BASE ARCHITECTURE
+           ---------------------------------------------------------------------
+        */
+        * {
+            box-sizing: border-box;
+            outline: none;
+            margin-top: 0;
+            margin-bottom: 0;
+            margin-left: 0;
+            margin-right: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1a1a1a;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #0c1421;
+
+            /* Professional Environmental Gradient */
+            background-image: linear-gradient(
+                                rgba(0, 46, 109, 0.75), 
+                                rgba(0, 0, 0, 0.9)
+                              ), 
+                              url('../static/images/img_1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+        /* Standardized Scrollbar UI */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gov-navy-primary);
+            border-radius: 6px;
+            border: 3px solid #f1f5f9;
+        }
+
+        /* 
+           ---------------------------------------------------------------------
+           3. BRANDING HEADER COMPONENTS
+           ---------------------------------------------------------------------
+        */
+        .official-top-strip {
+            background-color: #ffffff;
+            border-bottom: 1px solid #dddddd;
+            padding: 12px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: var(--font-size-xs);
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: #444444;
+        }
+
+        .official-main-header {
+            background-color: var(--gov-white-pure);
+            padding: 15px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 5px solid var(--gov-saffron-primary);
+            box-shadow: var(--elevation-2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .emblem-section {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .emblem-section img {
+            height: 80px;
+        }
+
+        .dept-titles {
+            border-left: 1px solid #cccccc;
+            padding-left: 20px;
+        }
+
+        .dept-titles h2 {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--gov-navy-primary);
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .dept-titles p {
+            font-size: 14px;
+            font-weight: 500;
+            color: #666666;
+        }
+
+        /* 
+           ---------------------------------------------------------------------
+           4. SYSTEM ACTION BAR (PORTAL CONTEXT)
+           ---------------------------------------------------------------------
+        */
+        .portal-id-bar {
+            background-color: var(--gov-navy-primary);
+            color: white;
+            padding: 15px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: inset 0 -4px 10px rgba(0,0,0,0.2);
+        }
+
+        .portal-id-bar .system-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .portal-id-bar .system-title i {
+            color: var(--gov-saffron-primary);
+            font-size: 24px;
+        }
+
+        .portal-id-bar .system-title h1 {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .user-auth-badge {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            font-size: var(--font-size-sm);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* 
+           ---------------------------------------------------------------------
+           5. DASHBOARD MESH LAYOUT (THE 10X RE-ARRANGEMENT)
+           ---------------------------------------------------------------------
+        */
+        .dashboard-canvas {
+            display: grid;
+            grid-template-columns: var(--sidebar-width) 1fr;
+            gap: 35px;
+            padding: 40px 6%;
+            flex-grow: 1;
+        }
+
+        /* --- SIDEBAR COMPONENTS --- */
+        .sidebar-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .glass-nav-card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: var(--radius-standard);
+            padding: 25px 15px;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--elevation-extreme);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .sidebar-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: #374151;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: var(--radius-ui);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 6px;
+            border: 1px solid transparent;
+        }
+
+        .sidebar-menu-item:hover {
+            background-color: #f3f4f6;
+            color: var(--gov-navy-primary);
+            transform: translateX(10px);
+        }
+
+        .sidebar-menu-item.active {
+            background-color: var(--gov-navy-primary);
+            color: white;
+            box-shadow: 0 10px 15px -3px rgba(0, 46, 109, 0.4);
+        }
+
+        .sidebar-menu-item i {
+            width: 24px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .sidebar-divider {
+            height: 1px;
+            background: #eeeeee;
+            margin: 20px 0;
+        }
+
+        .helpline-bubble {
+            background-image: linear-gradient(135deg, var(--gov-navy-primary), var(--gov-navy-hover));
+            color: white;
+            padding: 30px 20px;
+            border-radius: var(--radius-standard);
+            text-align: center;
+            box-shadow: var(--elevation-2);
+        }
+
+        .helpline-bubble small {
+            display: block;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            opacity: 0.7;
+            margin-bottom: 10px;
+        }
+
+        .helpline-bubble h3 {
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        /* --- MAIN WORKSPACE AREA --- */
+        .workspace-center {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* 1. TOP SUMMARY WIDGETS (Contextual Layer) */
+        .metrics-summary-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .summary-card {
+            background: var(--gov-white-pure);
+            border-radius: var(--radius-standard);
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: var(--elevation-1);
+            border-bottom: 4px solid transparent;
+            transition: transform 0.3s;
+        }
+
+        .summary-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--elevation-2);
+        }
+
+        .summary-card.navy { border-color: var(--gov-navy-primary); }
+        .summary-card.blue { border-color: var(--gov-blue-bright); }
+        .summary-card.green { border-color: var(--gov-green-success); }
+
+        .summary-card .icon-circle {
+            width: 60px;
+            height: 60px;
+            background: #f1f5f9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: var(--gov-blue-bright);
+            flex-shrink: 0;
+        }
+
+        .summary-card .data-label {
+            display: block;
+            font-size: 11px;
+            font-weight: 800;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .summary-card .data-value {
+            font-size: 18px;
+            font-weight: 800;
+            color: #111827;
+        }
+
+        /* 2. CENTRAL ACTION PANEL (The Heart of the Portal) */
+        .glass-action-hub {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(40px);
+            border-radius: var(--radius-extreme);
+            padding: 45px;
+            box-shadow: var(--elevation-extreme);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+
+        .hub-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 2px solid #f3f4f6;
+            padding-bottom: 25px;
+        }
+
+        .hub-header h2 {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--gov-navy-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .hub-header p {
+            font-size: 15px;
+            color: #6b7280;
+            margin-top: 5px;
+        }
+
+        /* THE 10X RE-ARRANGED SPLIT VIEW */
+        .hub-main-split {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 35px;
+        }
+
+        /* TOKEN SECTION (Primary Action) */
+        .token-action-zone {
+            background: #ffffff;
+            border: 2px solid var(--gov-blue-bright);
+            border-radius: var(--radius-standard);
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .token-label-pro {
+            font-size: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #9ca3af;
+            margin-bottom: 10px;
+        }
+
+        .token-hero-number {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 100px;
+            font-weight: 900;
+            color: var(--gov-navy-primary);
+            line-height: 1;
+            letter-spacing: -4px;
+            margin-bottom: 20px;
+        }
+
+        .otp-security-box {
+            display: inline-flex;
+            background: #f0f7ff;
+            color: var(--gov-blue-bright);
+            padding: 12px 35px;
+            border-radius: var(--radius-ui);
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            border: 1px dashed var(--gov-blue-bright);
+            margin-bottom: 25px;
+        }
+
+        .wait-metrics-bar {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 25px;
+            margin-top: 20px;
+        }
+
+        .metric-item-small span {
+            display: block;
+            font-size: 10px;
+            font-weight: 800;
+            color: #9ca3af;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .metric-item-small b {
+            font-size: 22px;
+            font-weight: 900;
+            color: #111827;
+        }
+
+        /* INVENTORY SECTION (Secondary Context) */
+        .inventory-context-zone {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: var(--radius-standard);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .zone-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--gov-navy-primary);
+            text-transform: uppercase;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 15px;
+        }
+
+        .stock-display-pro {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 10px;
+        }
+
+        .stock-display-pro b {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 32px;
+            color: var(--gov-navy-primary);
+        }
+
+        .progress-rail-pro {
+            width: 100%;
+            height: 35px;
+            background: #e2e8f0;
+            border-radius: 50px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #cbd5e1;
+        }
+
+        .progress-bar-pro {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gov-navy-primary), var(--gov-blue-bright));
+            border-radius: 50px;
+            transition: width 1.5s ease-out;
+            position: relative;
+        }
+
+        .progress-anim-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: stripeFlow 2.5s linear infinite;
+        }
+
+        @keyframes stripeFlow {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .stock-footer-details {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .stock-detail-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            font-weight: 600;
+            color: #6b7280;
+        }
+
+        .stock-detail-row i { color: var(--gov-green-success); }
+
+        /* --- BUTTON ARCHITECTURE --- */
+        .btn-hub-primary {
+            width: 100%;
+            padding: 20px;
+            border-radius: var(--radius-ui);
+            border: none;
+            background-color: var(--gov-blue-bright);
+            color: white;
+            font-size: 16px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            box-shadow: 0 10px 20px rgba(0, 86, 179, 0.3);
+        }
+
+        .btn-hub-primary:hover:not(:disabled) {
+            background-color: var(--gov-navy-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 46, 109, 0.4);
+        }
+
+        .btn-hub-primary:disabled {
+            background-color: #d1d5db;
+            color: #9ca3af;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        /* 3. SOCIAL AUDIT PANEL (Feedback Integration) */
+        .jan-awaaz-panel {
+            background-color: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: var(--radius-standard);
+            padding: 30px;
+            margin-top: 10px;
+        }
+
+        .jan-awaaz-panel h3 {
+            font-size: 18px;
+            font-weight: 800;
+            color: #166534;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .awaaz-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-control-pro {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        /* 4. SECURITY DISCLAIMER BAR */
+        .security-footer-box {
+            margin-top: 40px;
+            background-color: #fffbeb;
+            border: 1px solid #fde68a;
+            padding: 25px;
+            border-radius: var(--radius-ui);
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .security-footer-box i {
+            font-size: 36px;
+            color: var(--gov-saffron-primary);
+        }
+
+        .security-footer-box p {
+            font-size: 12px;
+            color: #92400e;
+            font-weight: 600;
+            line-height: 1.8;
+        }
+
+        /* 
+           ---------------------------------------------------------------------
+           6. OFFICIAL PORTAL FOOTER
+           ---------------------------------------------------------------------
+        */
+        .portal-master-footer {
+            background-color: #000000;
+            color: rgba(255, 255, 255, 0.5);
+            padding: 80px 6% 40px;
+            text-align: center;
+            border-top: 6px solid var(--gov-saffron-primary);
+            margin-top: auto;
+        }
+
+        .footer-cta-row {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-bottom: 40px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .nic-attribution {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 11px;
+            line-height: 2;
+        }
+
+        /* 
+           ---------------------------------------------------------------------
+           7. MEDIA QUERIES FOR RESPONSIVITY
+           ---------------------------------------------------------------------
+        */
+        @media (max-width: 1200px) {
+            .dashboard-canvas { grid-template-columns: 1fr; }
+            .sidebar-stack { display: none; }
+            .hub-main-split { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    
+
+    <!-- 2. MINISTRY HEADER BLOCK -->
+    <header class="official-main-header">
+        <div class="emblem-section">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/1200px-Emblem_of_India.svg.png" alt="National Emblem">
+            <div class="dept-titles">
+                <h2>Ministry of Consumer Affairs</h2>
+                <p>Dept of Food & Public Distribution</p>
+            </div>
+        </div>
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/95/Digital_India_logo.svg/1200px-Digital_India_logo.svg.png" style="height: 55px;" alt="Digital India Logo">
+    </header>
+    <!-- 1. OFFICIAL TOP BRANDING STRIP -->
+    <div class="official-top-strip">
+        <div>
+            <i class="fa-solid fa-flag" style="color: var(--gov-navy-primary);"></i> 
+            Government of India | भारत सरकार
+        </div>
+        <div>
+            Screen Reader Access | English | हिन्दी
+        </div>
+    </div>
+    <!-- 3. PORTAL IDENTIFICATION BAR -->
+    <div class="portal-id-bar">
+        <div class="system-title">
+            <i class="fa-solid fa-landmark-dome"></i>
+            <h1>SMART RATION DISTRIBUTION PORTAL</h1>
+        </div>
+        <div class="user-auth-badge">
+            <i class="fa-solid fa-user-check"></i>
+            <span>{{ name }} | PHH-Beneficiary</span>
+        </div>
+    </div>
+
+    <!-- 4. CORE DASHBOARD CANVAS -->
+    <div class="dashboard-canvas">
+        
+        <!-- SIDEBAR NAVIGATION STACK -->
+        <aside class="sidebar-stack">
+            <div class="glass-nav-card">
+                <nav>
+                    <a href="/citizen_dashboard" class="sidebar-menu-item active">
+                        <i class="fa-solid fa-house-user"></i> Dashboard Home
+                    </a>
+                    <a href="/allocation_history" class="sidebar-menu-item">
+                        <i class="fa-solid fa-clock-rotate-left"></i> Transaction History
+                    </a>
+                    <a href="/display" class="sidebar-menu-item">
+                        <i class="fa-solid fa-tv"></i> Live Queue Status
+                    </a>
+                    <a href="https://web.umang.gov.in/web_new/department?url=tration%2Fservice%2F1711&dept_id=367&dept_name=T-Ration%20(Telangana)" target="_blank" class="sidebar-menu-item">
+                        <i class="fa-solid fa-map-location-dot"></i> Locate Nearby FPS
+                    </a>
+                    <div class="sidebar-divider"></div>
+                    <form action="/logout" method="GET">
+                        <button type="submit" class="sidebar-menu-item" style="color: var(--gov-red-danger); width: 100%; background: none; border: none; font-family: inherit; cursor: pointer;">
+                            <i class="fa-solid fa-right-from-bracket"></i> Secure Portal Sign-out
+                        </button>
+                    </form>
+                </nav>
+            </div>
+
+            <div class="helpline-bubble">
+                <small>National PDS Helpline</small>
+                <h3>1800-11-4400</h3>
+            </div>
+        </aside>
+
+        <!-- MAIN WORKSPACE CENTER -->
+        <main class="workspace-center">
+            
+            <!-- A. TOP KPI WIDGETS -->
+            <div class="metrics-summary-row">
+                <div class="summary-card navy">
+                    <div class="icon-circle"><i class="fa-solid fa-address-card"></i></div>
+                    <div>
+                        <span class="data-label">Ration Card ID</span>
+                        <p class="data-value">{{ ration_card }}</p>
+                    </div>
+                </div>
+                <div class="summary-card blue">
+                    <div class="icon-circle"><i class="fa-solid fa-wheat-awn"></i></div>
+                    <div>
+                        <span class="data-label">Monthly Rice Quota</span>
+                        <p class="data-value">{{ rice }} KG Eligible</p>
+                    </div>
+                </div>
+                <div class="summary-card green">
+                    <div class="icon-circle"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div>
+                        <span class="data-label">E-KYC Status</span>
+                        <p class="data-value">Verified (Aadhar)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- B. THE CENTRAL ACTION HUB -->
+            <section class="glass-action-hub">
+                
+                <div class="hub-header">
+                    <div>
+                        <h2>Beneficiary Service Hub</h2>
+                        <p>Welcome, <b>{{ name }}</b>. Manage your monthly allocation here.</p>
+                        
+                        <a href="{{ url_for('my_ration_card') }}" class="sidebar-menu-item" style="display: inline-flex; margin-top: 15px; background: var(--gov-navy-primary); color: white; border-radius: 50px; padding: 10px 25px;">
+                            <i class="fa-solid fa-id-card-clip"></i> Digital Ration Card
+                        </a>
+                    </div>
+                    <div style="text-align: right; color: var(--gov-green-success); font-weight: 800; font-size: 11px;">
+                        <i class="fa-solid fa-circle-check" style="font-size: 24px; margin-bottom: 8px;"></i>
+                        <p>SYSTEM SYNC: ACTIVE</p>
+                    </div>
+                </div>
+
+                <!-- THE RE-ARRANGED SPLIT VIEW -->
+                <div class="hub-main-split">
+                    
+                    <!-- 1. PRIMARY ACTION: TOKEN MANAGEMENT -->
+                    <div class="token-action-zone">
+                        
+                        {% if token_no %}
+                            <div style="position: absolute; top: 15px; left: 50%; transform: translateX(-50%);">
+                                <span style="background: var(--gov-navy-primary); color: white; padding: 4px 15px; border-radius: 4px; font-size: 10px; font-weight: 800;">
+                                    {{ token_status.upper() }}
+                                </span>
+                            </div>
+
+                            <p class="token-label-pro">Current Distribution Token</p>
+                            <div class="token-hero-number">{{ token_no }}</div>
+                            
+                            {% if token_code %}
+                                <div class="otp-security-box">{{ token_code }}</div>
+                                <p style="font-size: 11px; color: #6b7280; font-weight: 600;">Secure OTP: Present at the shop counter.</p>
+                            {% endif %}
+
+                            <div class="wait-metrics-bar">
+                                <div class="metric-item-small">
+                                    <span>People Ahead</span>
+                                    <b>{{ people_ahead if people_ahead is not none else '0' }}</b>
+                                </div>
+                                <div class="metric-item-small">
+                                    <span>Wait Time</span>
+                                    <b>~15 MIN</b>
+                                </div>
+                            </div>
+
+                            <button class="btn-hub-primary" style="margin-top: 30px;" disabled>
+                                <i class="fa-solid fa-lock"></i> Monthly Token Dispatched
+                            </button>
+                        {% else %}
+                            <div style="padding: 40px 0;">
+                                <i class="fa-solid fa-ticket-simple" style="font-size: 60px; color: #e5e7eb; margin-bottom: 20px;"></i>
+                                <h4 style="color: #4b5563;">Schedule Your Collection</h4>
+                                <p style="font-size: 13px; color: #9ca3af; margin-top: 8px;">No active token found for current month.</p>
+                            </div>
+                            
+                            <form action="/book_token" method="POST">
+                                <button type="submit" class="btn-hub-primary">
+                                    <i class="fa-solid fa-plus-circle"></i> Generate My Monthly Token
+                                </button>
+                            </form>
+                        {% endif %}
+                    </div>
+
+                    <!-- 2. SECONDARY CONTEXT: SHOP INVENTORY -->
+                    <div class="inventory-context-zone">
+                        <div class="zone-title">
+                            <i class="fa-solid fa-chart-simple"></i> Live Shop Inventory
+                        </div>
+
+                        <div class="inventory-visualizer">
+                            <div class="stock-display-pro">
+                                <div style="text-align: left;">
+                                    <small style="font-weight: 800; color: #9ca3af; text-transform: uppercase; font-size: 10px;">Commodity</small>
+                                    <p style="font-size: 16px; font-weight: 800; color: #1f2937;">Fortified Rice</p>
+                                </div>
+                                <b>{{ rice_stock }} <small style="font-size: 12px;">KG</small></b>
+                            </div>
+
+                            <div class="progress-rail-pro">
+                                <div class="progress-bar-pro" style="width: {{ (rice_stock / 1000) * 100 }}%;">
+                                    <div class="progress-anim-overlay"></div>
+                                </div>
+                            </div>
+
+                            <div class="stock-footer-details">
+                                <div class="stock-detail-row">
+                                    <span>Warehouse Capacity</span>
+                                    <span>1,000 KG</span>
+                                </div>
+                                <div class="stock-detail-row">
+                                    <span>Refill Date</span>
+                                    <span>14 Oct 2025</span>
+                                </div>
+                                <div class="stock-detail-row">
+                                    <span>Operational Status</span>
+                                    <span><i class="fa-solid fa-circle-check"></i> NORMAL</span>
+                                </div>
+                            </div>
+
+                            <p style="font-size: 11px; color: #9ca3af; margin-top: 15px; border-top: 1px solid #e5e7eb; padding-top: 15px; line-height: 1.5;">
+                                *Real-time data synchronization with FPS Central Server. Values may vary by 5% during transit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- C. FEEDBACK MODULE (Conditional) -->
+                {% if token_status == 'completed' %}
+                    <div class="jan-awaaz-panel">
+                        <h3><i class="fa-solid fa-comment-dots"></i> Jan-Awaaz (Citizen Feedback)</h3>
+                        <p style="font-size: 13px; color: #166534; margin-bottom: 20px;">Your ration was collected. Please rate the service quality.</p>
+                        
+                        <form action="/submit_feedback" method="POST" class="awaaz-form-grid">
+                            <input type="hidden" name="shop_id" value="SHOP001">
+                            <div>
+                                <label style="font-size: 11px; font-weight: 800; color: #166534;">COMMODITY QUALITY</label>
+                                <select name="quality_rating" class="form-control-pro">
+                                    <option value="5">Excellent (Grade-A)</option>
+                                    <option value="4">Good</option>
+                                    <option value="1">Poor/Adulterated</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="font-size: 11px; font-weight: 800; color: #166534;">DEALER BEHAVIOR</label>
+                                <select name="service_rating" class="form-control-pro">
+                                    <option value="5">Very Cooperative</option>
+                                    <option value="3">Average</option>
+                                    <option value="1">Rude/Unfair</option>
+                                </select>
+                            </div>
+                            <div style="grid-column: span 2;">
+                                <textarea name="comment" class="form-control-pro" style="height: 60px;" placeholder="Describe your experience for official audit..."></textarea>
+                            </div>
+                            <button type="submit" class="btn-hub-primary" style="grid-column: span 2; padding: 12px; font-size: 12px; box-shadow: none;">
+                                <i class="fa-solid fa-paper-plane"></i> Submit Feedback to National Database
+                            </button>
+                        </form>
+                    </div>
+                {% endif %}
+
+                <!-- D. SECURITY PROTOCOLS -->
+                <div class="security-footer-box">
+                    <i class="fa-solid fa-user-lock"></i>
+                    <div>
+                        <h4 style="font-size: 14px; font-weight: 800; color: #92400e;">Security Protocols & Usage Advisory</h4>
+                        <p>
+                            Access to this portal is biometric-integrated under NFSA 2013 guidelines. Unauthorized distribution of 
+                            Secure OTPs or attempts to manipulate shop stock records is a criminal offense. Every transaction 
+                            is recorded against your Aadhaar identity.
+                        </p>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <!-- 5. SYSTEM MASTER FOOTER -->
+    <footer class="portal-master-footer">
+        <div class="footer-cta-row">
+            <span>Privacy Policy</span>
+            <span>Terms of Service</span>
+            <span>Technical Support</span>
+            <span>Contact NIC</span>
+        </div>
+        
+        <div style="max-width: 800px; margin: 0 auto; line-height: 2;">
+            <p style="color: white; font-weight: 800; font-size: 18px; margin-bottom: 10px;">Smart Ration Distribution System (SRDS)</p>
+            <p>Designed and Hosted by National Informatics Centre (NIC). All Content Owned by Ministry of Consumer Affairs, Food & Public Distribution, Govt of India.</p>
+        </div>
+
+        <div class="nic-attribution">
+            <p>&copy; 2025 National Informatics Centre. All rights reserved.</p>
+            <div style="margin-top: 20px; display: flex; justify-content: center; gap: 40px; opacity: 0.5;">
+                <span><i class="fa-solid fa-shield-halved"></i> 256-Bit SSL Encrypted</span>
+                <span><i class="fa-solid fa-cloud-bolt"></i> Distributed Node PB-1</span>
+                <span><i class="fa-solid fa-certificate"></i> ISO 27001 Certified</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE PORTAL SCRIPTS -->
+    <script>
+        /**
+         * SRDS Portal Engine v5.5
+         * Initialization & Logic
+         */
+        document.addEventListener('DOMContentLoaded', () => {
+            // Log portal integrity
+            console.log("Portal Environment: PRODUCTION-STABLE");
+            console.log("Security Layer: Active-Biometric-Sync");
+
+            // Animation for Progress Bar (Ensures smooth loading)
+            setTimeout(() => {
+                const bar = document.querySelector('.progress-bar-pro');
+                if(bar) bar.style.transition = 'width 2s cubic-bezier(0.1, 0, 0.3, 1)';
+            }, 100);
+        });
+    </script>
+</body>
+</html>

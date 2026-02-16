@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Token | Smart Ration Distribution System</title>
+    
+    <!-- Professional Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --gov-navy: #002752;
+            --gov-blue: #0056b3;
+            --gov-saffron: #ff9933;
+            --gov-green: #138808;
+            --card-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            background-image: linear-gradient(rgba(0, 39, 82, 0.7), rgba(0, 0, 0, 0.85)), 
+                              url('../static/images/img_1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* --- OFFICIAL HEADER --- */
+        .govt-header {
+            background: #fff;
+            padding: 15px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 3px solid var(--gov-navy);
+        }
+        .emblem-section { display: flex; align-items: center; gap: 15px; }
+        .emblem-section img { height: 70px; }
+        .dept-title h1 { font-size: 18px; color: var(--gov-navy); text-transform: uppercase; margin: 0; }
+
+        /* --- BREADCRUMB STRIP --- */
+        .nav-strip {
+            background: rgba(0, 39, 82, 0.8);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 12px 6%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* --- MAIN SEARCH CARD --- */
+        .container {
+            padding: 40px 6%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .search-card {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 600px;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
+            border-top: 5px solid var(--gov-saffron);
+        }
+
+        .card-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--gov-navy);
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        label { font-size: 12px; font-weight: 700; color: #555; text-transform: uppercase; }
+
+        input[type="text"] {
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            text-align: center;
+            font-weight: 600;
+            background: #f8f9fa;
+        }
+
+        .btn-search {
+            background: var(--gov-blue);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .btn-search:hover { background: var(--gov-navy); }
+
+        /* --- RESULTS SECTION --- */
+        .results-area {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .result-item b { color: var(--gov-navy); }
+
+        .status-badge {
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+
+        .back-link {
+            margin-top: 30px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Official Header -->
+    <header class="govt-header">
+        <div class="emblem-section">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/1200px-Emblem_of_India.svg.png" alt="Emblem">
+            <div class="dept-title">
+                <h2>भारत सरकार</h2>
+                <h1>Government of India</h1>
+            </div>
+        </div>
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/95/Digital_India_logo.svg/1200px-Digital_India_logo.svg.png" style="height: 50px;">
+    </header>
+
+    <div class="nav-strip">
+        <div><i class="fa fa-home"></i> Home / Dealer / <strong>Search Terminal</strong></div>
+        <div>NIC Node: DL-04</div>
+    </div>
+
+    <div class="container">
+        <div class="search-card">
+            <div class="card-title"><i class="fa fa-search"></i> Token Verification</div>
+
+            <form method="POST">
+                <div class="form-group">
+                    <label>Enter Ration Card Number</label>
+                    <input type="text" name="ration_card" placeholder="e.g. RC12345678" required>
+                </div>
+                <button type="submit" class="btn-search">Search Database</button>
+            </form>
+
+            {% if token %}
+            <div class="results-area">
+                <p style="color: var(--gov-green); font-weight: 800; margin-bottom: 15px; text-align: center;">
+                    <i class="fa fa-check-circle"></i> RECORD FOUND
+                </p>
+                <div class="result-item"><span>Ration Card</span> <b>{{ token[0] }}</b></div>
+                <div class="result-item"><span>Token Number</span> <b>#{{ token[1] }}</b></div>
+                <div class="result-item"><span>Security PIN</span> <b style="color:var(--gov-blue)">{{ token[2] }}</b></div>
+                <div class="result-item"><span>Current Status</span> 
+                    <span class="status-badge" style="background:#e7f3ff; color:var(--gov-blue)">{{ token[3].upper() }}</span>
+                </div>
+                <div class="result-item"><span>Generated Date</span> <b>{{ token[4].split(" ")[0] if token[4] else "N/A" }}</b></div>
+            </div>
+            {% elif request.method == 'POST' %}
+            <div class="results-area" style="text-align: center; color: #d32f2f;">
+                <i class="fa fa-exclamation-triangle"></i> No active token record found for this card.
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- FIXED LINK: Redirects to dealer_dashboard to avoid BuildError -->
+        <a href="/dealer" class="back-link">
+            <i class="fa fa-arrow-left"></i> Return to Dealer Control Panel
+        </a>
+    </div>
+
+</body>
+</html>

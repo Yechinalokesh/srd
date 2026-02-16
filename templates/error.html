@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Alert | Smart Ration Distribution System</title>
+    
+    <!-- Professional Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --gov-navy: #002752;
+            --gov-blue: #0056b3;
+            --gov-saffron: #ff9933;
+            --gov-red: #d32f2f;
+            --card-bg: rgba(255, 255, 255, 0.96);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            background-image: linear-gradient(rgba(0, 39, 82, 0.7), rgba(0, 0, 0, 0.85)), 
+                              url('../static/images/img_1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- OFFICIAL HEADER --- */
+        .govt-header {
+            background: #fff;
+            padding: 15px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 3px solid var(--gov-navy);
+        }
+        .emblem-section { display: flex; align-items: center; gap: 15px; }
+        .emblem-section img { height: 60px; }
+        .dept-title h1 { font-size: 16px; color: var(--gov-navy); text-transform: uppercase; margin: 0; }
+
+        /* --- ERROR CARD --- */
+        .container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .error-card {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 500px;
+            padding: 50px 40px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            border-top: 6px solid var(--gov-red);
+        }
+
+        .error-icon {
+            font-size: 60px;
+            color: var(--gov-red);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--gov-navy);
+            font-size: 22px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .error-message {
+            background: #fff5f5;
+            border: 1px solid #feb2b2;
+            padding: 15px;
+            border-radius: 6px;
+            color: #c53030;
+            font-weight: 600;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        .btn-back {
+            background: var(--gov-navy);
+            color: white;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-weight: 700;
+            display: inline-block;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 13px;
+        }
+
+        .btn-back:hover {
+            background: var(--gov-blue);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            color: rgba(255, 255, 255, 0.5);
+            padding: 20px;
+            text-align: center;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Official Header -->
+    <header class="govt-header">
+        <div class="emblem-section">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/1200px-Emblem_of_India.svg.png" alt="Emblem">
+            <div class="dept-title">
+                <h1>Government of India</h1>
+                <p style="font-size: 11px; font-weight: 700; color: #666;">Ministry of Consumer Affairs</p>
+            </div>
+        </div>
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/95/Digital_India_logo.svg/1200px-Digital_India_logo.svg.png" style="height: 40px;">
+    </header>
+
+    <div class="container">
+        <div class="error-card">
+            <i class="fa-solid fa-triangle-exclamation error-icon"></i>
+            <h2>System Alert</h2>
+            
+            <div class="error-message">
+                {{ message }}
+            </div>
+
+            <p style="color: #666; font-size: 13px; margin-bottom: 25px;">
+                The requested action could not be completed. Please verify your details and try again.
+            </p>
+
+            <a href="javascript:history.back()" class="btn-back">
+                <i class="fa-solid fa-arrow-left"></i> Go Back
+            </a>
+            <br>
+            <a href="/" style="display:inline-block; margin-top:15px; font-size:12px; color:var(--gov-blue); font-weight:600; text-decoration:none;">
+                Return to Home Page
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 National Informatics Centre (NIC) | Digital India
+    </footer>
+
+</body>
+</html>

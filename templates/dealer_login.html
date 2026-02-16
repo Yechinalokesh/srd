@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dealer Login | Smart Ration Distribution System</title>
+    
+    <!-- Professional Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome 6.5.0 (Standard Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* --- OFFICIAL GOV HEADER STYLES --- */
+.gov-top-strip {
+    background: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+    padding: 8px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #444;
+    font-family: 'Inter', sans-serif;
+}
+.gov-main-header {
+    background: #ffffff;
+    padding: 15px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 4px solid #ff9933; /* Saffron Border */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.emblem-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.emblem-box img {
+    height: 75px;
+}
+.dept-name {
+    border-left: 1px solid #ccc;
+    padding-left: 15px;
+}
+.dept-name h2 {
+    font-size: 18px;
+    color: #002752; /* Gov Navy */
+    margin: 0;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+.dept-name p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    font-weight: 600;
+}
+.digital-india-logo {
+    height: 50px;
+}
+        :root {
+            --gov-navy: #002e6d;
+            --gov-blue: #0056b3;
+            --gov-saffron: #ff9933;
+            --text-dark: #1a1a1a;
+            --error-red: #d32f2f;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+
+            /* Professional Background Configuration */
+            background: linear-gradient(rgba(0, 46, 109, 0.7), rgba(0, 0, 0, 0.85)), 
+                        url('../static/images/img_1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+        /* --- OFFICIAL TOP NAV --- */
+        .gov-bar {
+            background: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+            padding: 6px 5%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            font-weight: 700;
+            color: #444;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- MAIN BRANDING --- */
+        header.login-header {
+            padding: 30px 5% 10px;
+            text-align: center;
+            color: white;
+        }
+
+        header i {
+            font-size: 40px;
+            color: var(--gov-saffron);
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            font-size: 24px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* --- LOGIN CARD --- */
+        .login-wrapper {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.98);
+            width: 100%;
+            max-width: 420px;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            border-top: 5px solid var(--gov-navy);
+        }
+
+        .card-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .card-title h2 {
+            font-size: 20px;
+            color: var(--gov-navy);
+            text-transform: uppercase;
+        }
+
+        .card-title p {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 16px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 15px 14px 45px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 15px;
+            color: #333;
+            transition: 0.3s;
+            background: #fdfdfd;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gov-blue);
+            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+        }
+
+        .btn-login {
+            width: 100%;
+            background: var(--gov-blue);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-login:hover {
+            background: var(--gov-navy);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .btn-dev-link {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            padding: 10px;
+            background: #f1f5f9;
+            color: #475569;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 4px;
+            border: 1px dashed #cbd5e1;
+            transition: 0.2s;
+        }
+
+        .btn-dev-link:hover {
+            background: #e2e8f0;
+            color: #1e293b;
+        }
+
+        /* --- FOOTER WARNING --- */
+        .security-notice {
+            margin-top: 30px;
+            font-size: 11px;
+            color: #777;
+            text-align: center;
+            line-height: 1.5;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .security-notice i {
+            color: var(--gov-saffron);
+            margin-right: 5px;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            color: rgba(255, 255, 255, 0.5);
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        @media (max-width: 480px) {
+            .login-card { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+        <!-- Govt of India Bar -->
+<!-- Official Top Branding & Language Bar -->
+
+<!-- 2. OFFICIAL BRANDING HEADER -->
+<header class="gov-main-header">
+    <div class="emblem-box">
+        <!-- National Emblem -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/1200px-Emblem_of_India.svg.png" alt="Emblem of India">
+        
+        <div class="dept-name">
+            <h2>Ministry of Consumer Affairs</h2>
+            <p>Department of Food & Public Distribution</p>
+        </div>
+    </div>
+
+    <!-- Digital India Logo -->
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/95/Digital_India_logo.svg/1200px-Digital_India_logo.svg.png" class="digital-india-logo" alt="Digital India">
+</header>
+<!-- 1. BILINGUAL TOP STRIP -->
+<div class="gov-top-strip">
+    <div>
+        <i class="fa-solid fa-flag" style="color: #002752;"></i> 
+        GOVERNMENT OF INDIA | भारत सरकार
+    </div>
+    <div>
+        English | हिन्दी
+    </div>
+</div>
+
+
+    <header class="login-header">
+        <i class="fa-solid fa-building-columns"></i>
+        <h1>Smart Ration Distribution</h1>
+        <p style="font-size: 12px; opacity: 0.8; margin-top: 5px;">Department of Food & Public Distribution</p>
+    </header>
+
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div class="card-title">
+                <i class="fa-solid fa-user-shield" style="font-size: 48px; color: var(--gov-navy); margin-bottom: 15px;"></i>
+                <h2>Dealer Terminal</h2>
+                <p>Please enter your credentials to manage FPS inventory</p>
+            </div>
+
+            <form method="POST">
+                <div class="form-group">
+                    <i class="fa-solid fa-store"></i>
+                    <input type="text" name="shop_id" class="form-control" placeholder="Shop ID Number" required>
+                </div>
+
+                <div class="form-group">
+                    <i class="fa-solid fa-key"></i>
+                    <input type="password" name="password" class="form-control" placeholder="Security Password" required>
+                </div>
+
+                <button type="submit" class="btn-login">
+                    <i class="fa-solid fa-right-to-bracket"></i> Authenticate & Login
+                </button>
+            </form>
+
+            <!-- Developer Shortcut - Preserving logic as requested -->
+            <a href="/dealer" class="btn-dev-link">
+            </a>
+
+            <div class="security-notice">
+                <p><i class="fa-solid fa-triangle-exclamation"></i> <b>Security Notice:</b> Access to this system is restricted to authorized FPS dealers only. Unauthorized access attempts are monitored and may lead to legal action under the IT Act.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Smart Ration Distribution System | National Informatics Centre (NIC) | Digital India</p>
+    </footer>
+
+</body>
+</html>

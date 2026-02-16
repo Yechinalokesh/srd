@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Token Generated</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        .card {
+            width: 420px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.6s ease;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        .token {
+            font-size: 64px;
+            margin: 20px 0;
+            color: #38bdf8;
+        }
+
+        .code {
+            font-size: 26px;
+            margin: 10px 0;
+            color: #facc15;
+        }
+
+        button {
+            background: #0ea5e9;
+            border: none;
+            padding: 12px 18px;
+            margin: 8px;
+            border-radius: 6px;
+            font-size: 15px;
+            cursor: pointer;
+            color: white;
+        }
+
+        button:hover {
+            background: #0284c7;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(10px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <h1>✅ Token Generated Successfully</h1>
+
+    <h3>Ration Card: {{ ration_card }}</h3>
+
+    <div class="token">🎟 {{ token }}</div>
+
+    <div class="code">🔐 Code: <b>{{ code }}</b></div>
+
+    <p>Please present this verification code at the shop counter.</p>
+
+    <br>
+
+    <a href="/citizen_dashboard">
+        <button>Go to Dashboard</button>
+    </a>
+
+    <a href="/logout">
+        <button>Logout</button>
+    </a>
+
+</div>
+
+</body>
+</html>

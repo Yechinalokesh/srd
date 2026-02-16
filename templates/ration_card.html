@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E-Ration Card | Government of India</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* --- OFFICIAL GOV HEADER STYLES --- */
+.gov-top-strip {
+    background: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+    padding: 8px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #444;
+    font-family: 'Inter', sans-serif;
+}
+.gov-main-header {
+    background: #ffffff;
+    padding: 15px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 4px solid #ff9933; /* Saffron Border */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.emblem-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.emblem-box img {
+    height: 75px;
+}
+.dept-name {
+    border-left: 1px solid #ccc;
+    padding-left: 15px;
+}
+.dept-name h2 {
+    font-size: 18px;
+    color: #002752; /* Gov Navy */
+    margin: 0;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+.dept-name p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    font-weight: 600;
+}
+.digital-india-logo {
+    height: 50px;
+}
+        :root {
+            --gov-navy: #002752;
+            --gov-saffron: #ff9933;
+            --gov-green: #138808;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f0f2f5;
+            margin: 0; padding: 0;
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        /* --- BILINGUAL HEADER --- */
+        .top-banner {
+            background: #fff;
+            border-bottom: 2px solid var(--gov-saffron);
+            padding: 10px 5%;
+            display: flex; justify-content: space-between;
+            font-size: 11px; font-weight: 800; text-transform: uppercase;
+        }
+
+        /* --- THE DIGITAL CARD CONTAINER --- */
+        .card-wrapper {
+            flex-grow: 1;
+            display: flex; justify-content: center; align-items: center;
+            padding: 40px 20px;
+            background-image: linear-gradient(rgba(0,39,82,0.8), rgba(0,39,82,0.8)), url('../static/images/img_1.jpg');
+            background-size: cover;
+        }
+
+        .ration-card-container {
+            background: var(--card-bg);
+            width: 100%; max-width: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            border: 1px solid #ddd;
+            position: relative;
+        }
+
+        /* Security Watermark */
+        .ration-card-container::before {
+            content: 'GOVERNMENT OF INDIA';
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 40px; color: rgba(0,0,0,0.03);
+            font-weight: 900; pointer-events: none; width: 100%; text-align: center;
+        }
+
+        /* Card Header */
+        .card-header {
+            background: var(--gov-navy);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--gov-saffron);
+        }
+
+        .card-header i { font-size: 30px; margin-bottom: 10px; color: var(--gov-saffron); }
+        .card-header h2 { margin: 0; font-size: 18px; letter-spacing: 1px; }
+        .card-header p { margin: 5px 0 0; font-size: 10px; opacity: 0.8; text-transform: uppercase; }
+
+        /* Card Body */
+        .card-body { padding: 30px; }
+
+        .qr-section {
+            text-align: center; margin-bottom: 25px;
+        }
+
+        .qr-placeholder {
+            width: 150px; height: 150px;
+            background: #fff; border: 1px solid #eee;
+            margin: 0 auto; padding: 10px;
+            display: flex; justify-content: center; align-items: center;
+        }
+
+        .details-grid {
+            display: grid; grid-template-columns: 1fr; gap: 15px;
+            border-top: 1px solid #eee; padding-top: 20px;
+        }
+
+        .detail-item label { font-size: 10px; font-weight: 800; color: #888; text-transform: uppercase; display: block; }
+        .detail-item span { font-size: 16px; font-weight: 700; color: var(--gov-navy); }
+
+        /* Member Table on Card */
+        .member-mini-table {
+            margin-top: 25px; width: 100%; border-collapse: collapse; font-size: 12px;
+        }
+        .member-mini-table th { text-align: left; color: #666; padding-bottom: 8px; border-bottom: 1px solid #eee; }
+        .member-mini-table td { padding: 8px 0; border-bottom: 1px dashed #f0f0f0; font-weight: 600; }
+
+        /* Footer Stamp */
+        .card-footer-stamp {
+            background: #f8f9fa; padding: 15px;
+            text-align: center; font-size: 10px; color: #777;
+            border-top: 1px solid #eee;
+        }
+
+        .btn-print {
+            position: fixed; bottom: 30px; right: 30px;
+            background: var(--gov-saffron); color: #000;
+            padding: 15px 25px; border-radius: 50px;
+            text-decoration: none; font-weight: 800; font-size: 13px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            display: flex; align-items: center; gap: 10px;
+        }
+
+        @media print {
+            .btn-print, .top-banner { display: none; }
+            body { background: white; }
+            .card-wrapper { padding: 0; background: none; }
+        }
+    </style>
+</head>
+<body>
+
+        <!-- Govt of India Bar -->
+<!-- Official Top Branding & Language Bar -->
+
+<!-- 2. OFFICIAL BRANDING HEADER -->
+<header class="gov-main-header">
+    <div class="emblem-box">
+        <!-- National Emblem -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/1200px-Emblem_of_India.svg.png" alt="Emblem of India">
+        
+        <div class="dept-name">
+            <h2>Ministry of Consumer Affairs</h2>
+            <p>Department of Food & Public Distribution</p>
+        </div>
+    </div>
+
+    <!-- Digital India Logo -->
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/95/Digital_India_logo.svg/1200px-Digital_India_logo.svg.png" class="digital-india-logo" alt="Digital India">
+</header>
+<!-- 1. BILINGUAL TOP STRIP -->
+<div class="gov-top-strip">
+    <div>
+        <i class="fa-solid fa-flag" style="color: #002752;"></i> 
+        GOVERNMENT OF INDIA | भारत सरकार
+    </div>
+    <div>
+        English | हिन्दी
+    </div>
+</div>
+
+
+    <div class="card-wrapper">
+        <div class="ration-card-container">
+            <div class="card-header">
+                <i class="fa-solid fa-guarantor"></i>
+                <h2>NFSA E-RATION CARD</h2>
+                <p>Ministry of Consumer Affairs, Food & Public Distribution</p>
+            </div>
+
+            <div class="card-body">
+                <div class="qr-section">
+                    <div class="qr-placeholder">
+                        <!-- Simulation of a QR Code using FontAwesome -->
+                        <i class="fa-solid fa-qrcode" style="font-size: 130px; color: #111;"></i>
+                    </div>
+                    <p style="font-size: 10px; color: #999; margin-top: 10px;">Unique ID: {{ citizen.ration_card }}</p>
+                </div>
+
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <label>Head of Family</label>
+                        <span>{{ citizen.head_name }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Ration Card Number</label>
+                        <span style="font-family: 'Roboto Mono'; color: var(--gov-blue);">{{ citizen.ration_card }}</span>
+                    </div>
+                </div>
+
+                <table class="member-mini-table">
+                    <thead>
+                        <tr>
+                            <th>Member Name</th>
+                            <th style="text-align: right;">Aadhaar Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for member in members %}
+                        <tr>
+                            <td>{{ member.name }}</td>
+                            <td style="text-align: right; color: var(--gov-green);">
+                                <i class="fa-solid fa-circle-check"></i> Linked
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card-footer-stamp">
+                <p>This is a computer-generated E-Card. Physical verification of Aadhaar is mandatory during commodity collection.</p>
+                <p style="margin-top: 5px; font-weight: 700; color: var(--gov-navy);">DIGITAL INDIA INITIATIVE</p>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="btn-print" onclick="window.print()">
+        <i class="fa-solid fa-print"></i> DOWNLOAD / PRINT CARD
+    </a>
+
+</body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Queue Display | Smart Ration Distribution System</title>
+    
+    <!-- Professional Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome 6.5.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* --- OFFICIAL GOV HEADER STYLES --- */
+.gov-top-strip {
+    background: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+    padding: 8px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #444;
+    font-family: 'Inter', sans-serif;
+}
+.gov-main-header {
+    background: #ffffff;
+    padding: 15px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 4px solid #ff9933; /* Saffron Border */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.emblem-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.emblem-box img {
+    height: 75px;
+}
+.dept-name {
+    border-left: 1px solid #ccc;
+    padding-left: 15px;
+}
+.dept-name h2 {
+    font-size: 18px;
+    color: #002752; /* Gov Navy */
+    margin: 0;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+.dept-name p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    font-weight: 600;
+}
+.digital-india-logo {
+    height: 50px;
+}
+        :root {
+            --gov-navy: #002e6d;
+            --gov-blue: #0056b3;
+            --gov-saffron: #ff9933;
+            --gov-green: #128807;
+            --gov-red: #d32f2f;
+            --glass-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1a1a1a;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+
+            /* Professional Background Configuration */
+            background: linear-gradient(rgba(0, 46, 109, 0.6), rgba(0, 0, 0, 0.8)), 
+                        url('../static/images/img_1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+
+        /* --- GOVT TOP BAR --- */
+        .gov-top-bar {
+            background: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+            padding: 8px 5%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            font-weight: 700;
+            color: #444;
+            text-transform: uppercase;
+        }
+
+        /* --- HEADER --- */
+        header.display-header {
+            background: var(--gov-navy);
+            color: white;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid var(--gov-saffron);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        .branding-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .branding-group i {
+            font-size: 30px;
+            color: var(--gov-saffron);
+        }
+
+        .branding-group h1 {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .status-indicator {
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-open { background: var(--gov-green); color: white; }
+        .status-closed { background: var(--gov-red); color: white; animation: pulse-red 2s infinite; }
+
+        /* --- MAIN DISPLAY --- */
+        .display-container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            width: 100%;
+            max-width: 900px;
+            border-radius: 20px;
+            padding: 60px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.3);
+            position: relative;
+        }
+
+        /* Back Button - Senior Dev standard placement */
+        .btn-back {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            color: var(--gov-navy);
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            background: #eee;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover { background: #ddd; }
+
+        /* Token Typography */
+        .serving-label {
+            font-size: 18px;
+            color: #666;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .token-main {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 140px;
+            font-weight: 700;
+            color: var(--gov-navy);
+            line-height: 1;
+            text-shadow: 4px 4px 0px rgba(0, 46, 109, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .next-queue-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 2px dashed #ccc;
+        }
+
+        .queue-box h3 {
+            font-size: 14px;
+            color: #888;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .queue-box div {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--gov-blue);
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: #eee;
+            border-radius: 10px;
+            margin-top: 50px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: var(--gov-blue);
+            animation: move-progress 5s linear infinite;
+        }
+
+        /* Animations */
+        @keyframes move-progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes pulse-red {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        /* Shop Closed Overlay */
+        .closed-alert {
+            color: var(--gov-red);
+            padding: 40px;
+        }
+
+        .closed-alert i { font-size: 80px; margin-bottom: 20px; }
+        .closed-alert h2 { font-size: 48px; text-transform: uppercase; }
+
+        footer {
+            background: rgba(0,0,0,0.9);
+            color: rgba(255,255,255,0.5);
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+        }
+    </style>
+
+    <script>
+        // Production Grade Auto-Refresh
+        setInterval(() => {
+            window.location.reload();
+        }, 5000);
+    </script>
+</head>
+<body>
+
+        <!-- Govt of India Bar -->
+<!-- Official Top Branding & Language Bar -->
+
+<!-- 2. OFFICIAL BRANDING HEADER -->
+<header class="gov-main-header">
+    <div class="emblem-box">
+        <!-- National Emblem -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/1200px-Emblem_of_India.svg.png" alt="Emblem of India">
+        
+        <div class="dept-name">
+            <h2>Ministry of Consumer Affairs</h2>
+            <p>Department of Food & Public Distribution</p>
+        </div>
+    </div>
+
+    <!-- Digital India Logo -->
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/95/Digital_India_logo.svg/1200px-Digital_India_logo.svg.png" class="digital-india-logo" alt="Digital India">
+</header>
+<!-- 1. BILINGUAL TOP STRIP -->
+<div class="gov-top-strip">
+    <div>
+        <i class="fa-solid fa-flag" style="color: #002752;"></i> 
+        GOVERNMENT OF INDIA | भारत सरकार
+    </div>
+    <div>
+        English | हिन्दी
+    </div>
+</div>
+
+    <header class="display-header">
+        <div class="branding-group">
+            <i class="fa-solid fa-users-viewfinder"></i>
+            <h1>Live Queue Tracking</h1>
+        </div>
+        
+        <div class="status-indicator {{ 'status-open' if shop_status == 'open' else 'status-closed' }}">
+            <i class="fa-solid {{ 'fa-door-open' if shop_status == 'open' else 'fa-door-closed' }}"></i>
+            Shop Status: {{ shop_status.upper() }}
+        </div>
+    </header>
+
+    <div class="display-container">
+        <div class="glass-panel">
+            <a href="/citizen_dashboard" class="btn-back">
+                <i class="fa-solid fa-arrow-left"></i> Exit Display
+            </a>
+
+            {% if shop_status == "closed" %}
+                <div class="closed-alert">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                    <h2>Shop Closed</h2>
+                    <p style="font-size: 18px; color: #666; margin-top: 10px;">Please visit during official business hours.</p>
+                </div>
+            {% else %}
+
+                {% if now_token %}
+                    <div class="serving-label">Currently Serving</div>
+                    <div class="token-main">{{ now_token }}</div>
+                    <p style="font-weight: 600; color: var(--gov-green); text-transform: uppercase;">
+                        <i class="fa-solid fa-circle-check"></i> Please proceed to the counter
+                    </p>
+                {% else %}
+                    <div class="serving-label">Queue Status</div>
+                    <div style="font-size: 32px; color: #999; margin: 40px 0;">No Active Beneficiaries</div>
+                {% endif %}
+
+                <div class="next-queue-info">
+                    <div class="queue-box">
+                        <h3><i class="fa-solid fa-forward-step"></i> Next in Line</h3>
+                        <div>{{ next_token if next_token else '--' }}</div>
+                    </div>
+                    <div class="queue-box">
+                        <h3><i class="fa-solid fa-user-group"></i> Total Waiting</h3>
+                        <div>{{ waiting_count }}</div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-bar"></div>
+                </div>
+                <p style="margin-top: 15px; font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 1px;">
+                    Refreshing queue data in real-time...
+                </p>
+
+            {% endif %}
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 Smart Ration Distribution System | Digital India Initiative | National Informatics Centre (NIC)
+    </footer>
+
+</body>
+</html>

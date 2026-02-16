@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Token</title>
+</head>
+<body style="text-align:center; padding-top:50px;">
+
+    <h2>🎟 Book Token</h2>
+
+    <form action="/book_token" method="POST">
+
+        <input 
+            type="text" 
+            name="ration_card"
+            placeholder="Enter Ration Card (RC12345678)"
+            required
+            style="padding:10px; width:260px; text-transform:uppercase;"
+        >
+
+        <br><br>
+
+        <button type="submit" style="padding:10px 20px;">
+            Get Token
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="/citizen_login">
+        <button>⬅ Back</button>
+    </a>
+
+</body>
+</html>

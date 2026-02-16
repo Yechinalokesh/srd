@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SRD Statistics</title>
+
+    <script>
+        setInterval(function(){
+            location.reload();
+        }, 3000);
+    </script>
+
+</head>
+<body>
+
+<h1>📊 SRD Live Statistics</h1>
+
+<h2>Total Tokens Today: {{ total }}</h2>
+<h2>🟡 Waiting: {{ waiting }}</h2>
+<h2>🟢 Completed: {{ completed }}</h2>
+<h2>🔴 Skipped: {{ skipped }}</h2>
+
+<br>
+
+<a href="/dealer"><button>Back to Dealer</button></a>
+
+</body>
+</html>

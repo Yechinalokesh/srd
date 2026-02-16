@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dealer Control Terminal | Smart Ration Distribution System</title>
+    
+    <!-- Professional Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome 6.5.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* --- OFFICIAL GOV HEADER STYLES --- */
+        .gov-top-strip {
+            background: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+            padding: 8px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            font-weight: 700;
+            color: #444;
+            font-family: 'Inter', sans-serif;
+        }
+        .gov-main-header {
+            background: #ffffff;
+            padding: 15px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 4px solid #ff9933; /* Saffron Border */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .emblem-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .emblem-box img {
+            height: 75px;
+        }
+        .dept-name {
+            border-left: 1px solid #ccc;
+            padding-left: 15px;
+        }
+        .dept-name h2 {
+            font-size: 18px;
+            color: #002752; /* Gov Navy */
+            margin: 0;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+        .dept-name p {
+            font-size: 14px;
+            color: #666;
+            margin: 0;
+            font-weight: 600;
+        }
+        .digital-india-logo {
+            height: 50px;
+        }
+
+        :root {
+            --gov-navy: #001a35;
+            --gov-blue: #0056b3;
+            --gov-saffron: #ff9933;
+            --gov-green: #128807;
+            --gov-red: #d32f2f;
+            --panel-bg: rgba(13, 25, 41, 0.96);
+            --sidebar-width: 320px;
+            --border-white: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(rgba(0, 20, 40, 0.7), rgba(0, 5, 10, 0.9)), 
+                        url('../static/images/img_1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            overflow-x: hidden;
+        }
+
+        /* --- MASTER HEADER --- */
+        header.dashboard-header {
+            background: var(--gov-navy);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            z-index: 100;
+        }
+
+        .branding-group {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .branding-group i {
+            font-size: 32px;
+            color: var(--gov-saffron);
+        }
+
+        .branding-group h1 {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .header-meta {
+            text-align: right;
+        }
+
+        .header-meta b {
+            display: block;
+            font-size: 14px;
+            color: var(--gov-saffron);
+        }
+
+        /* --- TERMINAL GRID --- */
+        .terminal-grid {
+            display: grid;
+            grid-template-columns: var(--sidebar-width) 1fr;
+            gap: 25px;
+            padding: 30px 5%;
+            flex-grow: 1;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-card {
+            background: var(--panel-bg);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid var(--border-white);
+            backdrop-filter: blur(20px);
+        }
+
+        .sidebar-card h3 {
+            font-size: 13px;
+            color: var(--gov-saffron);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border-white);
+            padding-bottom: 10px;
+        }
+
+        .skipped-list {
+            list-style: none;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .skipped-item {
+            background: rgba(255,255,255,0.05);
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid var(--gov-saffron);
+        }
+
+        .btn-recall {
+            background: var(--gov-blue);
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* MAIN ACTION AREA */
+        .main-workspace {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .command-toolbar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .tool-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-white);
+            color: white;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .tool-btn:hover { background: var(--gov-blue); transform: translateY(-2px); }
+        .tool-btn.danger:hover { background: var(--gov-red); }
+
+        .stats-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .stat-box {
+            background: var(--panel-bg);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--border-white);
+        }
+
+        .stat-box h4 { font-family: 'Roboto Mono'; font-size: 32px; color: var(--gov-saffron); margin-top: 5px; }
+
+        .serving-panel {
+            background: var(--panel-bg);
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid var(--border-white);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 25px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .status-pill.open { background: var(--gov-green); }
+        .status-pill.closed { background: var(--gov-red); }
+
+        .token-id-main { font-family: 'Roboto Mono', monospace; font-size: 110px; font-weight: 700; color: #fff; line-height: 1; }
+
+        .transaction-form {
+            max-width: 450px;
+            margin: 40px auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .pin-input {
+            width: 100%;
+            padding: 20px;
+            border: 2px solid #333;
+            background: #fff;
+            color: var(--gov-navy);
+            border-radius: 8px;
+            font-size: 32px;
+            text-align: center;
+            font-family: 'Roboto Mono', monospace;
+            outline: none;
+        }
+
+        .btn-main {
+            padding: 18px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-complete { background: var(--gov-green); color: white; width: 100%; }
+        .btn-skip { background: var(--gov-orange); color: white; width: 100%; }
+
+        /* Inventory Monitor */
+        .inventory-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-white);
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .inventory-bar {
+            height: 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+
+        .inventory-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gov-saffron), #ffcc80);
+            transition: width 1s ease-in-out;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 30px 5%;
+            text-align: center;
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            border-top: 1px solid var(--border-white);
+        }
+    </style>
+</head>
+<body>
+
+<!-- 1. GOV HEADER -->
+<header class="gov-main-header">
+    <div class="emblem-box">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/1200px-Emblem_of_India.svg.png" alt="Emblem of India">
+        <div class="dept-name">
+            <h2>Ministry of Consumer Affairs</h2>
+            <p>Department of Food & Public Distribution</p>
+        </div>
+    </div>
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/95/Digital_India_logo.svg/1200px-Digital_India_logo.svg.png" class="digital-india-logo" alt="Digital India">
+</header>
+
+<div class="gov-top-strip">
+    <div><i class="fa-solid fa-flag" style="color: #002752;"></i> GOVERNMENT OF INDIA | भारत सरकार</div>
+    <div>English | हिन्दी</div>
+</div>
+
+<!-- 2. DASHBOARD HEADER -->
+<header class="dashboard-header">
+    <div class="branding-group">
+        <i class="fa-solid fa-shield-halved"></i>
+        <div>
+            <h1>Dealer Dashboard</h1>
+            <span style="font-size: 11px; opacity: 0.7;">Digital Integrated Management System</span>
+        </div>
+    </div>
+    <div class="header-meta">
+        <b>Dealer ID: {{ session['dealer'] if session['dealer'] else 'SHOP_001' }}</b>
+        <span id="live-date" style="font-size: 12px; opacity: 0.8;"></span>
+    </div>
+</header>
+
+<div class="terminal-grid">
+    <!-- 3. SIDEBAR -->
+    <aside class="sidebar">
+                <!-- REAL-TIME INVENTORY (Moved here so it's always visible) -->
+                <div class="inventory-card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+                <span style="font-size: 12px; font-weight: 700; color: var(--gov-saffron);">RICE INVENTORY</span>
+                <b style="font-family: 'Roboto Mono'; font-size: 18px;">{{ rice_stock }} KG</b>
+            </div>
+            <div class="inventory-bar">
+                <div class="inventory-fill" style="width: {{ (rice_stock / 1000) * 100 }}%;"></div>
+            </div>
+        </div>
+
+        <div class="sidebar-card">
+            <h3><i class="fa-solid fa-clock-rotate-left"></i> Skipped Queue</h3>
+            <div class="skipped-list">
+                {% if skipped_tokens %}
+                    {% for skp in skipped_tokens %}
+                    <div class="skipped-item">
+                        <div>
+                            <b>#{{ skp[2] }}</b>
+                            <p style="font-size: 10px; opacity: 0.6;">{{ skp[1] }}</p>
+                        </div>
+                        <form action="/recall_token" method="POST">
+                            <input type="hidden" name="token_id" value="{{ skp[0] }}">
+                            <button type="submit" class="btn-recall">RECALL</button>
+                        </form>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p style="font-size: 11px; opacity: 0.5; text-align: center;">No skipped tokens</p>
+                {% endif %}
+            </div>
+        </div>
+    </aside>
+
+    <!-- 4. MAIN WORKSPACE -->
+    <main class="main-workspace">
+        <div class="command-toolbar">
+            <a href="/open_shop" class="tool-btn"><i class="fa-solid fa-door-open"></i> Open Shop</a>
+            <a href="/close_shop" class="tool-btn"><i class="fa-solid fa-door-closed"></i> Close Shop</a>
+            <a href="/reset_day" class="tool-btn" onclick="return confirm('Reset all tokens?')"><i class="fa-solid fa-rotate"></i> New Day</a>
+            <a href="/dealer_analytics" class="tool-btn"><i class="fa-solid fa-chart-simple"></i> Analytics</a>
+            <a href="/logout" class="tool-btn danger"><i class="fa-solid fa-power-off"></i> Logout</a>
+        </div>
+
+        <div class="stats-strip">
+            <div class="stat-box">
+                <span>Total Tokens</span>
+                <h4>{{ (served_count | default(0)) + (waiting_count | default(0)) }}</h4>
+            </div>
+            <div class="stat-box" style="border-bottom: 4px solid var(--gov-green);">
+                <span>Served</span>
+                <h4>{{ served_count | default(0) }}</h4>
+            </div>
+            <div class="stat-box" style="border-bottom: 4px solid var(--gov-saffron);">
+                <span>Waiting</span>
+                <h4>{{ waiting_count | default(0) }}</h4>
+            </div>
+        </div>
+
+        <div class="serving-panel">
+            <div class="status-pill {{ 'open' if shop_status == 'open' else 'closed' }}">
+                <i class="fa-solid fa-circle"></i> Shop Status: {{ shop_status | upper }}
+            </div>
+
+            {% if token %}
+                <div style="font-size: 12px; font-weight: 700; letter-spacing: 2px; opacity: 0.6;">CURRENTLY SERVING</div>
+                <div class="token-id-main">#{{ token[2] }}</div>
+                <div style="background: rgba(255,255,255,0.1); padding: 10px 25px; border-radius: 50px; display: inline-block; font-weight: 700; margin-bottom: 30px;">
+                    <i class="fa-solid fa-address-card"></i> CARD: {{ token[1] }}
+                </div>
+
+                <div class="transaction-form">
+                    <form action="/complete_token" method="POST">
+                        <input type="hidden" name="token_id" value="{{ token[0] }}">
+                        <p style="font-size: 11px; font-weight: 700; color: #fff; margin-bottom: 10px; text-align: left;">ENTER BENEFICIARY PIN</p>
+                        <input type="text" name="code" class="pin-input" placeholder="0000" maxlength="4" required>
+                        <button type="submit" class="btn-main btn-complete" style="margin-top: 20px;">
+                            <i class="fa-solid fa-check-double"></i> Complete Transaction
+                        </button>
+                    </form>
+                    <form action="/skip_token" method="POST">
+                        <input type="hidden" name="token_id" value="{{ token[0] }}">
+                        <button type="submit" class="btn-main btn-skip">
+                            <i class="fa-solid fa-forward"></i> Skip to Next
+                        </button>
+                    </form>
+                </div>
+            {% else %}
+                <div style="padding: 60px 0;">
+                    <i class="fa-solid fa-layer-group" style="font-size: 64px; color: var(--gov-saffron); opacity: 0.2; margin-bottom: 25px;"></i>
+                    <h2>Queue Empty</h2>
+                    <p style="opacity: 0.6;">Waiting for beneficiaries...</p>
+                </div>
+            {% endif %}
+        </div>
+    </main>
+</div>
+
+<footer>
+    <p>&copy; 2025 Smart Ration Distribution System | National Informatics Centre (NIC)</p>
+</footer>
+
+<script>
+    function updateDate() {
+        const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+        document.getElementById('live-date').textContent = new Date().toLocaleDateString('en-IN', options);
+    }
+    updateDate();
+    setInterval(updateDate, 1000);
+</script>
+
+</body>
+</html>

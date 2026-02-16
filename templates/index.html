@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Ration Distribution Portal | Government of India</title>
+
+    <!-- Professional Typography: Inter for UI, Roboto for Headings -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto:wght@700;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 6.5.0 (Official Icons Only) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* --- OFFICIAL GOV HEADER STYLES --- */
+.gov-top-strip {
+    background: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+    padding: 8px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #444;
+    font-family: 'Inter', sans-serif;
+}
+.gov-main-header {
+    background: #ffffff;
+    padding: 15px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 4px solid #ff9933; /* Saffron Border */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.emblem-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.emblem-box img {
+    height: 75px;
+}
+.dept-name {
+    border-left: 1px solid #ccc;
+    padding-left: 15px;
+}
+.dept-name h2 {
+    font-size: 18px;
+    color: #002752; /* Gov Navy */
+    margin: 0;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+.dept-name p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    font-weight: 600;
+}
+.digital-india-logo {
+    height: 50px;
+}
+        :root {
+            --gov-navy: #002752;
+            --gov-blue: #0056b3;
+            --gov-saffron: #ff9933;
+            --gov-green: #138808;
+            --text-main: #212529;
+            --glass-bg: rgba(255, 255, 255, 0.92);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+            
+            /* Background Configuration */
+            background-image: url('../static/images/img_1.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: #000; /* Fallback */
+        }
+
+        /* --- OFFICIAL TOP HEADER --- */
+        .gov-header {
+            background: #f8f9fa;
+            border-bottom: 2px solid var(--gov-saffron);
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .gov-header .left { display: flex; gap: 20px; color: #444; }
+        .gov-header .left span i { color: var(--gov-navy); margin-right: 5px; }
+
+        /* --- NEWS TICKER --- */
+        .top-bar {
+            background: var(--gov-navy);
+            color: white;
+            display: flex;
+            align-items: center;
+            height: 40px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .marquee-label {
+            background: var(--gov-saffron);
+            color: #000;
+            padding: 0 20px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+
+        marquee {
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .marquee-item {
+            margin-right: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 100px 5%;
+            text-align: center;
+            background: rgba(0, 39, 82, 0.85); /* Deep Navy Overlay */
+            backdrop-filter: blur(8px);
+            color: white;
+            border-bottom: 4px solid var(--gov-saffron);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--gov-green);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            border-radius: 2px;
+        }
+
+        .hero h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-size: 18px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 4px;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--gov-blue);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #004494;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border-color: white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--gov-navy);
+        }
+
+        /* --- CONTENT SECTIONS --- */
+        .section {
+            padding: 80px 10%;
+            background: var(--glass-bg);
+            margin: 40px 5%;
+            border-radius: 8px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 32px;
+            color: var(--gov-navy);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--gov-saffron);
+            margin: 0 auto;
+        }
+
+        /* --- STATS GRID --- */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 40px 20px;
+            border-radius: 4px;
+            border-bottom: 4px solid var(--gov-blue);
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--gov-navy);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-main);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- FEATURES GRID --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: #fff;
+            padding: 30px;
+            border: 1px solid #eee;
+            border-left: 5px solid var(--gov-navy);
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: scale(1.02);
+        }
+
+        .feature-icon {
+            font-size: 28px;
+            color: var(--gov-blue);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            color: var(--gov-navy);
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            background: #111;
+            color: #aaa;
+            padding: 40px 5%;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .footer b { color: #fff; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .btn-container { flex-direction: column; padding: 0 20px; }
+            .section { margin: 20px 10px; padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Govt of India Bar -->
+<!-- Official Top Branding & Language Bar -->
+
+<!-- 2. OFFICIAL BRANDING HEADER -->
+<header class="gov-main-header">
+    <div class="emblem-box">
+        <!-- National Emblem -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/1200px-Emblem_of_India.svg.png" alt="Emblem of India">
+        
+        <div class="dept-name">
+            <h2>Ministry of Consumer Affairs</h2>
+            <p>Department of Food & Public Distribution</p>
+        </div>
+    </div>
+
+    <!-- Digital India Logo -->
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/95/Digital_India_logo.svg/1200px-Digital_India_logo.svg.png" class="digital-india-logo" alt="Digital India">
+</header>
+<!-- 1. BILINGUAL TOP STRIP -->
+<div class="gov-top-strip">
+    <div>
+        <i class="fa-solid fa-flag" style="color: #002752;"></i> 
+        GOVERNMENT OF INDIA | भारत सरकार
+    </div>
+    <div>
+        English | हिन्दी
+    </div>
+</div>
+
+
+<!-- News Ticker -->
+<div class="top-bar">
+    <div class="marquee-label">Updates</div>
+    <marquee behavior="scroll" direction="left" scrollamount="5">
+        <span class="marquee-item"><i class="fa-solid fa-clock"></i> Shop hours: 09:00 AM - 05:00 PM daily.</span>
+        <span class="marquee-item"><i class="fa-solid fa-address-card"></i> Aadhaar linking is mandatory for all transactions.</span>
+        <span class="marquee-item">
+    <i class="fa-solid fa-bullhorn" style="color: #ff9933;"></i> 
+    New registration for Ration Cards is now open. 
+    <a href="/citizen_register" style="color: #ff9933; font-weight: 700; text-decoration: underline; margin-left: 5px;">Register Here</a>
+</span>
+        <span class="marquee-item"><i class="fa-solid fa-phone-volume"></i> Toll-Free Helpline: 1800-123-4567.</span>
+    </marquee>
+</div>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="badge">Digital India Initiative</div>
+    <h1>Smart Ration Distribution System</h1>
+    <p>A unified digital platform ensuring food security through transparency, real-time tracking, and efficient commodity management for every citizen.</p>
+    
+    <div class="btn-container">
+        <a href="/citizen_login" class="btn btn-primary">
+            <i class="fa-solid fa-id-card-clip"></i> Citizen Portal
+        </a>
+        <a href="/dealer_login" class="btn btn-outline">
+            <i class="fa-solid fa-store-lock"></i> Dealer Terminal
+        </a>
+    </div>
+</section>
+
+<!-- Impact Section -->
+<div class="section">
+    <div class="section-title">
+        <h2>System Statistics</h2>
+    </div>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-value">50,000+</div>
+            <div class="stat-label">Active FPS Centers</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">2.4M</div>
+            <div class="stat-label">Beneficiaries Registered</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">87%</div>
+            <div class="stat-label">Wait-Time Reduction</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">99.9%</div>
+            <div class="stat-label">Uptime Reliability</div>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="section">
+    <div class="section-title">
+        <h2>Core Services</h2>
+    </div>
+    <div class="features-grid">
+        <div class="feature-card">
+            <i class="fa-solid fa-fingerprint feature-icon"></i>
+            <h3>Digital KYC</h3>
+            <p>Seamless biometric and Aadhaar based verification for secure commodity distribution.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fa-solid fa-receipt feature-icon"></i>
+            <h3>E-Token System</h3>
+            <p>Avoid long queues by generating digital tokens for scheduled shop visits.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fa-solid fa-chart-line feature-icon"></i>
+            <h3>Live Monitoring</h3>
+            <p>Real-time tracking of stock availability and queue status at your nearest shop.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fa-solid fa-shield-check feature-icon"></i>
+            <h3>Transparent Audits</h3>
+            <p>Every gram accounted for with automated weighing and digital transaction receipts.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <p><b>&copy; 2025 Smart Ration Distribution System</b> | Powered by National Informatics Centre (NIC)</p>
+    <p style="margin-top: 10px; font-size: 11px;">Best viewed in latest versions of Chrome, Firefox, or Edge.</p>
+</footer>
+
+</body>
+</html>

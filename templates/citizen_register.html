@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizen Registration | Smart Ration Distribution System</title>
+
+    <!-- Professional Typography: Inter for UI, Roboto for Headings -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@700;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 6.5.0 (Official Icons Only) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* --- OFFICIAL GOV HEADER STYLES --- */
+.gov-top-strip {
+    background: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+    padding: 8px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #444;
+    font-family: 'Inter', sans-serif;
+}
+.gov-main-header {
+    background: #ffffff;
+    padding: 15px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 4px solid #ff9933; /* Saffron Border */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.emblem-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.emblem-box img {
+    height: 75px;
+}
+.dept-name {
+    border-left: 1px solid #ccc;
+    padding-left: 15px;
+}
+.dept-name h2 {
+    font-size: 18px;
+    color: #002752; /* Gov Navy */
+    margin: 0;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+.dept-name p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    font-weight: 600;
+}
+.digital-india-logo {
+    height: 50px;
+}
+        :root {
+            --gov-navy: #002752;
+            --gov-blue: #0056b3;
+            --gov-saffron: #ff9933;
+            --gov-green: #138808;
+            --text-main: #212529;
+            --glass-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+            
+            /* Background Configuration matching the portal */
+            background-image: linear-gradient(rgba(0, 39, 82, 0.85), rgba(0, 39, 82, 0.85)), 
+                              url('../static/images/img_1.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- OFFICIAL TOP HEADER --- */
+        .gov-header {
+            background: #f8f9fa;
+            border-bottom: 2px solid var(--gov-saffron);
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .gov-header .left { display: flex; gap: 20px; color: #444; }
+        .gov-header .left span i { color: var(--gov-navy); margin-right: 5px; }
+
+        /* --- REGISTRATION SECTION --- */
+        .section {
+            padding: 60px 5%;
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .registration-card {
+            background: var(--glass-bg);
+            width: 100%;
+            max-width: 850px;
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 28px;
+            color: var(--gov-navy);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--gov-saffron);
+            margin: 0 auto;
+        }
+
+        /* --- FORM STYLING --- */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--gov-navy);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input, select {
+            padding: 12px 15px;
+            font-size: 14px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            outline: none;
+            transition: 0.2s;
+            background: #fff;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--gov-blue);
+            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+        }
+
+        /* --- MEMBER TABLE --- */
+        .member-table-wrapper {
+            margin: 30px 0;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th {
+            background: #f1f4f8;
+            color: var(--gov-navy);
+            padding: 12px;
+            font-size: 13px;
+            text-align: left;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .table-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            font-size: 13px;
+        }
+
+        /* --- BUTTONS --- */
+        .btn-submit {
+            background: var(--gov-blue);
+            color: white;
+            padding: 15px 40px;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn-submit:hover {
+            background: var(--gov-navy);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            color: var(--gov-navy);
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            background: #111;
+            color: #aaa;
+            padding: 30px 5%;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .registration-card { padding: 30px 20px; }
+            .form-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+
+    <script>
+        function formatAadhar(input) {
+            let value = input.value.replace(/\s/g, ''); 
+            value = value.replace(/[^0-9]/g, ''); 
+            
+            let formatted = "";
+            for(let i=0; i<value.length; i++) {
+                if(i > 0 && i % 4 === 0) formatted += " ";
+                formatted += value[i];
+            }
+            input.value = formatted;
+        }
+
+        function generateMembers() {
+            const count = document.getElementById("family_members").value;
+            const body = document.getElementById("members_body");
+            body.innerHTML = "";
+
+            for (let i = 1; i <= count; i++) {
+                body.innerHTML += `
+                    <tr>
+                        <td style="font-weight: 600; color: #666;">${i}</td>
+                        <td>
+                            <input type="text" name="aadhar[]" class="table-input" placeholder="0000 0000 0000"
+                                maxlength="14" oninput="formatAadhar(this)" required>
+                        </td>
+                        <td>
+                            <input type="text" name="name[]" class="table-input" placeholder="Full Name (As per Aadhaar)"
+                                oninput="this.value = this.value.toUpperCase()" required>
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', generateMembers);
+    </script>
+</head>
+<body>
+
+<!-- Govt of India Bar -->
+<!-- Official Top Branding & Language Bar -->
+
+<!-- 2. OFFICIAL BRANDING HEADER -->
+<header class="gov-main-header">
+    <div class="emblem-box">
+        <!-- National Emblem -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/1200px-Emblem_of_India.svg.png" alt="Emblem of India">
+        
+        <div class="dept-name">
+            <h2>Ministry of Consumer Affairs</h2>
+            <p>Department of Food & Public Distribution</p>
+        </div>
+    </div>
+
+    <!-- Digital India Logo -->
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/95/Digital_India_logo.svg/1200px-Digital_India_logo.svg.png" class="digital-india-logo" alt="Digital India">
+</header>
+<!-- 1. BILINGUAL TOP STRIP -->
+<div class="gov-top-strip">
+    <div>
+        <i class="fa-solid fa-flag" style="color: #002752;"></i> 
+        GOVERNMENT OF INDIA | भारत सरकार
+    </div>
+    <div>
+        English | हिन्दी
+    </div>
+</div>
+
+<main class="section">
+    <div class="registration-card">
+        <div class="section-title">
+            <h2>Citizen Registration</h2>
+            <p style="font-size: 14px; color: #666; margin-top: 10px;">Enroll your family into the Smart Ration Distribution network</p>
+        </div>
+
+        <form method="POST" action="/citizen_register">
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="ration_card_input"><i class="fa-solid fa-address-card"></i> Ration Card Number</label>
+                    <input type="text" id="ration_card_input" name="ration_card" placeholder="e.g. RC12345678"
+                        oninput="this.value = this.value.toUpperCase()" required>
+                </div>
+                <div class="form-group">
+                    <label for="family_members"><i class="fa-solid fa-users"></i> Total Family Members</label>
+                    <select id="family_members" onchange="generateMembers()">
+                        <option value="1">1 Member</option>
+                        <option value="2">2 Members</option>
+                        <option value="3">3 Members</option>
+                        <option value="4" selected>4 Members</option>
+                        <option value="5">5 Members</option>
+                        <option value="6">6 Members</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 30px;">
+                <label for="head_name_input"><i class="fa-solid fa-user-tie"></i> Head of Family Name</label>
+                <input type="text" id="head_name_input" name="head_name" placeholder="Full Name as per official documents"
+                    oninput="this.value = this.value.toUpperCase()" required>
+            </div>
+
+            <label style="margin-bottom: 10px; display: block;">Family Member Verification (Aadhaar Based)</label>
+            <div class="member-table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="50">#</th>
+                            <th>Aadhaar Number (UID)</th>
+                            <th>Name (As per Aadhaar)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="members_body">
+                        <!-- Dynamic rows generated by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 40px;">
+                <label for="password_input"><i class="fa-solid fa-lock"></i> Set Portal Password</label>
+                <input type="password" id="password_input" name="password" placeholder="Minimum 8 alphanumeric characters" required minlength="8">
+            </div>
+
+            <button type="submit" class="btn-submit">
+                <i class="fa-solid fa-user-plus"></i> Complete Registration
+            </button>
+
+            <a href="/" class="back-link">
+                <i class="fa-solid fa-arrow-left"></i> Back to Main Portal
+            </a>
+        </form>
+    </div>
+</main>
+
+<footer class="footer">
+    <p><b>&copy; 2025 Smart Ration Distribution System</b> | National Informatics Centre (NIC) | Digital India Initiative</p>
+</footer>
+
+</body>
+</html>
