@@ -132,6 +132,11 @@ def init_db():
 # NEW: Submit Social Audit Feedback
 # Process citizen feedback and stores it in the central database.
 # ========================================================
+@app.route("/download_db")
+def download_db():
+    from flask import send_file
+    return send_file("srd.db", as_attachment=True)
+    
 @app.route("/submit_feedback", methods=["POST"])
 def submit_feedback():
     # 1. Verification: Ensure the citizen session is active
